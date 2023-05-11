@@ -1,102 +1,171 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>IDS</title>
+  <title>IDS</title>
 </head>
 <style>
-    header {
-        background-color: #1a1a1a;
-        color: #fff;
-        padding: 20px;
-        font-size: 2rem;
-        font-family: 'Montserrat', sans-serif;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        font-weight: bolder;
-    }
-    header span {
-        color: #e32243;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
+  body {
+    background-color: #333;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+  }
 
-      justify-content: center;
-    }
-    li {
-      background-color: #fff;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.2rem;
-      color: #333;
-      transition: transform 0.3s ease;
-    }
-    li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
-    b {
-      font-weight: bold;
-      color: #e32243;
-    }
-    input {
-  background-color: #4ecc00;
-  border: none;
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  margin: 0 auto;
-}
-
-input:hover {
-  background-color: #006699;
-}
-
-h1 {
-  display: flex;
-  justify-content: center;
-}
-p{
+  header {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px;
+    font-size: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bolder;
     display: flex;
-  justify-content: center;
-  color: #fff;
-}
-  </style>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  header span {
+    color: #e32243;
+  }
+
+  form:first-child {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+  }
+
+  form:last-child {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  input[type="text"] {
+    background-color: #ff0000;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  input[type="text"]:hover {
+    background-color: #cc0000;
+  }
+
+  input[type="submit"] {
+    background-color: #4ecc00;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #006699;
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  p {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    margin-top: 1rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+    transition: transform 0.3s ease;
+    flex-basis: calc(33.33% - 20px);
+  }
+
+  li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  b {
+    font-weight: bold;
+    color: #e32243;
+  }
+
+  @media screen and (max-width: 768px) {
+    li {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
 <body style="background-color: #333;">
 
-    <header>Intrusion Detection System</header>
-    <p>Click the button below to start sniffing packets and detecting attacks:</p>
-    <p>Current network interfaces</p>
-    
-  <form action="/start">
-    Interface: <input type="text" name="interface"><br>
-      <input type="submit" value="Start Sniffing">
+  <header>Intrusion Detection System</header>
+  <form action="/previous-logs" style="margin-top: 1%; margin-right: 10px;">
+    <input type="submit" value="View all previous logs">
   </form>
-    
-    <form action="/alerts" style="margin-top: 1%;">
-        <input type="submit" value="View Logs">
-    </form>
-    
 
-    <ul>
-        {% for item in data %}
-          <li> <b>{{ item }}</b></li>
-        {% endfor %}
-      </ul>
-      <script type="text/javascript">
-        setTimeout(function() {
-            location.reload();
-        }, 5000);
-    </script>
+  <p>Click the button below to start sniffing packets and detecting attacks:</p>
+  <p>Current network interfaces</p>
+  <ul>
+    {% for item in data %}
+    <li> <b>{{ item }}</b></li>
+    {% endfor %}
+  </ul>
+
+    <form action="/start" style="margin-right: 10px;">
+      Interface: <input type="text" name="interface"><br>
+      <input type="submit" value="Start Sniffing">
+    </form>
+
+    <form action="/alerts" style="margin-top: 1%; margin-right: 10px;">
+      <input type="submit" value="View Logs">
+    </form>
+
+
+
+
+
+  <script type="text/javascript">
+    setTimeout(function () {
+      location.reload();
+    }, 5000);
+  </script>
 </body>
+
 </html>

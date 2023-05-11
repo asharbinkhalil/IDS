@@ -1,7 +1,8 @@
 from scapy.layers.inet import IP, TCP
 import time
 # function to detect land attack
-
+from MODULES.write_to_file import add_to_current,add_to_logs
+import datetime
 
 def landAttack(pkt, hostIP):
     WARNING = '\033[91m'
@@ -17,4 +18,7 @@ def landAttack(pkt, hostIP):
                 # if both source port and IP are same then alert
                 if srcIp == dstIp and srcPort == dstPort:
                     #print(f'You just received a land attack packet from IP:'+str(srcIp))
+                    message=f" "+str(datetime.datetime.now())+"  "+"You just received a land attack packet from IP: "+str(srcIp)+"\n"
+                    add_to_current(message)
+                    add_to_logs(message)   
                     print(f'{WARNING}{BOLD}You just received a land attack packet from IP:'+str(srcIp))

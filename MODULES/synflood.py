@@ -1,5 +1,6 @@
 from scapy.layers.inet import IP, TCP
-
+from MODULES.write_to_file import add_to_current,add_to_logs
+import datetime
 # class to detect syn flood attack
 class synFlood:
     def __init__(self,hostIP):
@@ -40,6 +41,9 @@ class synFlood:
 
                     for address in self.flood.keys():
                         if self.flood[address]['count'] > self.threshold:
+                            message=f" "+str(datetime.datetime.now())+"  "+"Warning! you may be under a syn-flood attack from IP:"+str(address)+"\n"
+                            add_to_current(message)
+                            add_to_logs(message)  
                             print(
                                 f'{self.WARNING}{self.BOLD}Warning! you may be under a syn-flood attack from IP:'+str(address))
                             self.synAttacked = True

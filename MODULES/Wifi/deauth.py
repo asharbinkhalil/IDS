@@ -1,6 +1,7 @@
 from scapy.layers.dot11 import Dot11Deauth
 import time
-
+from MODULES.write_to_file import add_to_current,add_to_logs
+import datetime
 # class to detect deauth attacks
 class Deauth:
     def __init__(self):
@@ -23,6 +24,9 @@ class Deauth:
                 self.record['count'] = self.record['count']+1
             # identify signature of deauth attack    
             if current < self.timeThreshold and self.record['count'] > 10:
+                message=f" "+str(datetime.datetime.now())+"  "+"Warning! you just received unexpected amount of Deauth packets...Possible deauth attack"+"\n"
+                add_to_current(message)
+                add_to_logs(message)                  
                 print(f'{self.WARNING}{self.BOLD}Warning! you just received unexpected amount of Deauth packets...Possible deauth attack')
             else:
                 # if not an attack then just reset the record

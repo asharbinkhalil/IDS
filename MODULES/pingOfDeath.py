@@ -1,5 +1,6 @@
 from scapy.layers.inet import IP
-
+from MODULES.write_to_file import add_to_current,add_to_logs
+import datetime
 # class to detect ping of death
 class PingOfDeath:
     def __init__(self,hostIP):
@@ -28,6 +29,9 @@ class PingOfDeath:
                         # finally iterate over all IP addresses and see if anyone crosses the threshold
                         for target in self.pod.keys():
                             if self.pod[target]['size'] > self.sizethreshold:
+                                message=f" "+str(datetime.datetime.now())+"  "+"Warning! You may have received a possible ping of death from IP "+target+"\n"
+                                add_to_current(message)
+                                add_to_logs(message)   
                                 print(
                                     f'{self.WARNING}{self.BOLD}Warning! You may have received a possible ping of death from IP'+target)
                                 self.podAttacked = True

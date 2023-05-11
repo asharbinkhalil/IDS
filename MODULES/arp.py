@@ -1,5 +1,6 @@
 from scapy.all import IP, Ether, ARP, srp, sniff
-
+from MODULES.write_to_file import add_to_current,add_to_logs
+import datetime
 # class to identify case of spoofed IP address
 class arpSpoof:
     def __init__(self, hostip):
@@ -30,6 +31,9 @@ class arpSpoof:
                                 self.arpTable[srcIP] = None
                     # if the Mac addresses don't match then alert
                     if self.arpTable[srcIP] != srcMac:
+                        message=f"Warning! You just receievd a packet with spoofed IP address"+"\n"
+                        add_to_current(message)
+                        add_to_logs(message)                       
                         print(
                             f'{self.WARNING}{self.BOLD}Warning! You just receievd a packet with spoofed IP address')
                         self.arpAttacked = True

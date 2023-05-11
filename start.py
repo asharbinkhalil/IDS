@@ -5,7 +5,7 @@ from MODULES.pingOfDeath import PingOfDeath
 from MODULES.landattack import landAttack
 from MODULES.synflood import synFlood
 from MODULES.ddos import Ddos
-from MODULES.deauth import Deauth
+from MODULES.Wifi.deauth import Deauth
 from MODULES.arp import arpSpoof
 from MODULES.smurf import Smurf
 from MODULES.idleScan import IDLEScanDetector
@@ -61,6 +61,18 @@ def start_sniffing():
 @app.route('/alerts')
 def display():
     file_path = 'LOGS/current.txt'
+    data = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            data.append(line.strip())
+    #copy_file('example.txt','log.txt')
+    return render_template('index.html', data=data)
+
+
+
+@app.route('/previous-logs')
+def display_all():
+    file_path = 'LOGS/logs.txt'
     data = []
     with open(file_path, 'r') as file:
         for line in file:

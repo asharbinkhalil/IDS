@@ -3,6 +3,7 @@ from scapy.sendrecv import sniff
 from scapy.layers.inet import IP, TCP, UDP
 import os
 from MODULES.write_to_file import add_to_logs,add_to_current
+import datetime
 #class for all types of scans
 class ScanDetector:
     def __init__(self,hostIP):
@@ -80,7 +81,7 @@ class ScanDetector:
             for ip in self.syn.keys():
                 if self.detect(ip, self.syn):
                     print(f"{self.WARNING}{self.BOLD}Warning! you may be under a syn scan from IP:"+ip+"\n")
-                    message=f"Warning! you may be under a syn scan from IP:"+str(ip)+"\n"
+                    message=f" "+str(datetime.datetime.now())+"  "+"Warning! you may be under a syn scan from IP:"+str(ip)+"\n"
                     add_to_current(message)
                     add_to_logs(message)
                     self.synAttacked = True
@@ -97,7 +98,7 @@ class ScanDetector:
                 if self.detect(ip, self.xmas):
                     current_directory = os.getcwd()
                    # print("Currecnt DIrecrectory is ->" + str(current_directory))
-                    message=f"Warning! you may be under a xmas scan from IP:"+ str(ip)+ "\n"
+                    message=f" "+str(datetime.datetime.now())+" " +"Warning! you may be under a xmas scan from IP:"+ str(ip)+ "\n"
                     add_to_current(message)
                     add_to_logs(message)
                     print(f"{self.WARNING}{self.BOLD}Warning! you may be under a xmas scan from IP:"+ip)
@@ -114,7 +115,7 @@ class ScanDetector:
                 self.ack[ip]['count'] = self.ack[ip]['count']+1
             for ip in self.ack.keys():
                 if self.detect(ip, self.ack):
-                    message="Warning! you may be under a ack / window scan from IP:"+str(ip)+"\n"
+                    message=f" "+str(datetime.datetime.now())+"  "+"Warning! you may be under a ack / window scan from IP:"+str(ip)+"\n"
                     print(f"{self.WARNING}{self.BOLD}Warning! you may be under a ack / window scan from IP: "+str(ip))
                     add_to_current(message)
                     add_to_logs(message)
@@ -130,7 +131,7 @@ class ScanDetector:
                 self.udp[ip]['count'] = self.udp[ip]['count']+1
             for ip in self.udp.keys():
                 if self.detect(ip, self.udp):
-                    message=(f"Warning! you may be under a udp scan from IP:"+ str(ip)+ "\n")
+                    message=(f" "+str(datetime.datetime.now())+"  "+"Warning! you may be under a udp scan from IP:"+ str(ip)+ "\n")
                     add_to_current(message)
                     add_to_logs(message)
                     print(f"{self.WARNING}{self.BOLD}Warning! you may be under a udp scan from IP:"+ip)
@@ -146,7 +147,7 @@ class ScanDetector:
                 self.fin[ip]['count'] = self.fin[ip]['count']+1
             for ip in self.fin.keys():
                 if self.detect(ip, self.fin):
-                    message=(f"Warning! you may be under a fin scan from IP"+ str(ip)+ "\n")
+                    message=(f" "+str(datetime.datetime.now())+"  "+"Warning! you may be under a fin scan from IP"+ str(ip)+ "\n")
                     add_to_current(message)
                     add_to_logs(message)
                     print(f"{self.WARNING}{self.BOLD}Warning! you may be under a fin scan from IP:"+ip)
@@ -162,7 +163,7 @@ class ScanDetector:
                 self.null[ip]['count'] = self.null[ip]['count']+1
             for ip in self.null.keys():
                 if self.detect(ip, self.null):
-                    message=f"Warning! you may be under a null scan from IP"+ str(ip) + "\n"
+                    message=f" "+str(datetime.datetime.now())+"  "+"Warning! you may be under a null scan from IP"+ str(ip) + "\n"
 #                    with open('./example.txt', 'a') as file:
 #                        file.write(f"Warning! you may be under a null scan from IP"+ str(ip) + "\n")
                     add_to_current(message)

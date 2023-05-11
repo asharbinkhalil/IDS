@@ -1,32 +1,25 @@
 # IDS
 An Intrusion Detection System in python using scapy
-```
-        IIIIIIIIII     DDDDDDDDDDDDD                SSSSSSSSSSSSSSS 
-        I::::::::I     D::::::::::::DDD           SS:::::::::::::::S
-        I::::::::I     D:::::::::::::::DD        S:::::SSSSSS::::::S
-        II::::::II     DDD:::::DDDDD:::::D       S:::::S     SSSSSSS
-          I::::I         D:::::D    D:::::D      S:::::S            
-          I::::I         D:::::D     D:::::D     S:::::S            
-          I::::I         D:::::D     D:::::D      S::::SSSS         
-          I::::I         D:::::D     D:::::D       SS::::::SSSSS    
-          I::::I         D:::::D     D:::::D         SSS::::::::SS  
-          I::::I         D:::::D     D:::::D            SSSSSS::::S 
-          I::::I         D:::::D     D:::::D                 S:::::S
-          I::::I         D:::::D    D:::::D                  S:::::S
-        II::::::II     DDD:::::DDDDD:::::D       SSSSSSS     S:::::S
-        I::::::::I     D:::::::::::::::DD        S::::::SSSSSS:::::S
-        I::::::::I     D::::::::::::DDD          S:::::::::::::::SS 
-```
+Detects various network attacks. Especially wi-fi attacks.
+(Working to add machine learning to it, would be glad if any of you can help)
+---
+
+![Screenshot](./templates/Screenshot_1.jpg)
 ## Setup
 Open two terminals
 Start IDS on one terminal and launch attacks from other.
 
-Start IDS by 
+Start flask app of IDS by 
 
 ``` 
-./start.py <interface>
+./start.py
 ```
-Start specifice attack files accordingly
+Start specific attack files from /ATTACKS on other terminal accordingly. For e.g:
 ```
 ./port_scanning.sh <interface IP>
 ```
+## Demo
+
+![Screenshot](./templates/Screenshot_1.jpg)
+![Screenshot](./templates/Screenshot_2.jpg)
+![Screenshot](./templates/Screenshot_3.jpg)

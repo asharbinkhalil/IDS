@@ -1,2 +1,12 @@
-Warning! you may be under a ack / window scan from IP:172.217.19.3
-Warning! you may be under a syn scan from IP:127.0.0.1
+ 2023-05-11 17:09:46.014051  Warning! you may be under a syn scan from IP:127.0.0.1
+ 2023-05-11 17:09:46.115933  Warning! you may be under a ack / window scan from IP:127.0.0.1
+ 2023-05-11 17:10:15.851857 Warning! you may be under a xmas scan from IP:127.0.0.1
+ 2023-05-11 17:10:17.327835  Warning! you may be under a fin scan from IP127.0.0.1
+ 2023-05-11 17:10:18.950962  Warning! you may be under a udp scan from IP:127.0.0.1
+ 2023-05-11 17:10:19.756244  Warning! you may be under a null scan from IP127.0.0.1
+ 2023-05-11 17:10:21.556721  Warning! You are receiving unusual amounts of packets...Possible DDOS
+ 2023-05-11 17:10:21.742855  Warning! you may be under a syn-flood attack from IP:10.0.2.15
+Warning! you may be under a smurf attack
+ 2023-05-11 17:11:35.279259  You just received a land attack packet from IP: 10.0.2.15
+ 2023-05-11 17:11:35.280263  You just received a land attack packet from IP: 10.0.2.15
+ 2023-05-11 17:11:40.708009  Warning! You may have received a possible ping of death from IP 10.0.2.15
